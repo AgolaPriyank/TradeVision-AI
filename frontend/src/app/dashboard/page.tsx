@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import { api } from '@/utils/api';
 import TradingChart from '@/components/TradingChart';
+import RecommendationPanel from '@/components/RecommendationPanel';
 
 interface PortfolioData {
   available_balance: number;
@@ -160,6 +161,11 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+
+      {/* Recommendations Section */}
+      <section className="pt-6 px-6 max-w-[1600px] mx-auto pb-12">
+        <RecommendationPanel autoRefresh={true} refreshInterval={60} />
+      </section>
     </div>
   );
 }
