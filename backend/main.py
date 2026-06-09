@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from database.database import Base, engine
-from models import user, order, portfolio
+from models import user, order, portfolio, recommendation
 
 # Create tables (SQLite auto-creation for now)
 Base.metadata.create_all(bind=engine)
@@ -27,12 +27,16 @@ from api.market import router as market_router
 from api.websockets import router as ws_router
 from api.orders import router as orders_router
 from api.portfolio import router as portfolio_router
+from api.recommendations import router as recommendations_router
+from api.recommendations_ws import router as recommendations_ws_router
 
 app.include_router(auth_router)
 app.include_router(market_router)
 app.include_router(ws_router)
 app.include_router(orders_router)
 app.include_router(portfolio_router)
+app.include_router(recommendations_router)
+app.include_router(recommendations_ws_router)
 
 @app.get("/")
 def health_check():
